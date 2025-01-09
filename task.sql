@@ -36,6 +36,16 @@ CREATE TABLE ProductWarehouseInventory (
     FOREIGN KEY (WarehouseID) REFERENCES Warehouses(ID)
 );
 
+-- Temporarily create the ProductInventory table for the tests (this table is no longer needed after normalization)
+CREATE TABLE ProductInventory (
+    ID INT PRIMARY KEY,
+    ProductID INT,
+    WarehouseID INT,
+    WarehouseAmount INT,
+    FOREIGN KEY (ProductID) REFERENCES Products(ID),
+    FOREIGN KEY (WarehouseID) REFERENCES Warehouses(ID)
+);
+
 -- Populate test data
 
 -- Insert data into Countries table
@@ -56,3 +66,8 @@ INSERT INTO Warehouses (ID, WarehouseName, WarehouseAddress, CountryID) VALUES
 INSERT INTO ProductWarehouseInventory (ProductID, WarehouseID, WarehouseAmount) VALUES
     (1, 1, 2),
     (1, 2, 5);
+
+-- Insert data into ProductInventory table for the tests
+INSERT INTO ProductInventory (ID, ProductID, WarehouseID, WarehouseAmount) VALUES
+    (1, 1, 1, 2),
+    (2, 1, 2, 5);
